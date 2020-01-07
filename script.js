@@ -44,7 +44,7 @@ function displayResults(responseJson) {
 
         let myChart2 = document.getElementById('myChart2').getContext('2d');
 
-        let ratioChart2 = new Chart(myChart,{
+        let ratioChart2 = new Chart(myChart2,{
             type:'bar',
             data:{
                 labels:[`${responseJson.ratios[0].date}`,
@@ -54,16 +54,44 @@ function displayResults(responseJson) {
                         `${responseJson.ratios[4].date}`,
                       ],
                 datasets:[{
-                    label: 'Current Ratios',
+                    label: 'Quick Ratios',
                     data:[
-                    `${responseJson.ratios[0].liquidityMeasurementRatios.currentRatio}`,
-                    `${responseJson.ratios[1].liquidityMeasurementRatios.currentRatio}`,
-                    `${responseJson.ratios[2].liquidityMeasurementRatios.currentRatio}`,
-                    `${responseJson.ratios[3].liquidityMeasurementRatios.currentRatio}`,
-                    `${responseJson.ratios[4].liquidityMeasurementRatios.currentRatio}`,
+                    `${responseJson.ratios[0].liquidityMeasurementRatios.quickRatio}`,
+                    `${responseJson.ratios[1].liquidityMeasurementRatios.quickRatio}`,
+                    `${responseJson.ratios[2].liquidityMeasurementRatios.quickRatio}`,
+                    `${responseJson.ratios[3].liquidityMeasurementRatios.quickRatio}`,
+                    `${responseJson.ratios[4].liquidityMeasurementRatios.quickRatio}`,
                    
                     ],
-                    backgroundColor:'green'
+                    backgroundColor:'brown'
+                }]
+            },
+            options:{}
+        });
+
+
+        let myChart3 = document.getElementById('myChart3').getContext('2d');
+
+        let ratioChart3 = new Chart(myChart3,{
+            type:'bar',
+            data:{
+                labels:[`${responseJson.ratios[0].date}`,
+                        `${responseJson.ratios[1].date}`,
+                        `${responseJson.ratios[2].date}`,
+                        `${responseJson.ratios[3].date}`,
+                        `${responseJson.ratios[4].date}`,
+                      ],
+                datasets:[{
+                    label: 'Quick Ratios',
+                    data:[
+                    `${responseJson.ratios[0].investmentValuationRatios.priceEarningsRatio}`,
+                    `${responseJson.ratios[1].investmentValuationRatios.priceEarningsRatio}`,
+                    `${responseJson.ratios[2].investmentValuationRatios.priceEarningsRatio}`,
+                    `${responseJson.ratios[3].investmentValuationRatios.priceEarningsRatio}`,
+                    `${responseJson.ratios[4].investmentValuationRatios.priceEarningsRatio}`,
+                   
+                    ],
+                    backgroundColor:'purple'
                 }]
             },
             options:{}
