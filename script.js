@@ -113,18 +113,18 @@ function displayResults(responseJson) {
                         `${responseJson.ratios[9].date}`,
                       ],
                 datasets:[{
-                    label: 'Price Earning Ratio',
+                    label: 'Inventory Turnover Ratio',
                     data:[
-                    `${responseJson.ratios[0].investmentValuationRatios.priceEarningsRatio}`,
-                    `${responseJson.ratios[1].investmentValuationRatios.priceEarningsRatio}`,
-                    `${responseJson.ratios[2].investmentValuationRatios.priceEarningsRatio}`,
-                    `${responseJson.ratios[3].investmentValuationRatios.priceEarningsRatio}`,
-                    `${responseJson.ratios[4].investmentValuationRatios.priceEarningsRatio}`,
-                    `${responseJson.ratios[5].investmentValuationRatios.priceEarningsRatio}`,
-                    `${responseJson.ratios[6].investmentValuationRatios.priceEarningsRatio}`,
-                    `${responseJson.ratios[7].investmentValuationRatios.priceEarningsRatio}`,
-                    `${responseJson.ratios[8].investmentValuationRatios.priceEarningsRatio}`,
-                    `${responseJson.ratios[9].investmentValuationRatios.priceEarningsRatio}`,
+                    `${responseJson.ratios[0].operatingPerformanceRatios.inventoryTurnover}`,
+                    `${responseJson.ratios[1].operatingPerformanceRatios.inventoryTurnover}`,
+                    `${responseJson.ratios[2].operatingPerformanceRatios.inventoryTurnover}`,
+                    `${responseJson.ratios[3].operatingPerformanceRatios.inventoryTurnover}`,
+                    `${responseJson.ratios[4].operatingPerformanceRatios.inventoryTurnover}`,
+                    `${responseJson.ratios[5].operatingPerformanceRatios.inventoryTurnover}`,
+                    `${responseJson.ratios[6].operatingPerformanceRatios.inventoryTurnover}`,
+                    `${responseJson.ratios[7].operatingPerformanceRatios.inventoryTurnover}`,
+                    `${responseJson.ratios[8].operatingPerformanceRatios.inventoryTurnover}`,
+                    `${responseJson.ratios[9].operatingPerformanceRatios.inventoryTurnover}`,
                    
                     ],
                     backgroundColor:'purple'
@@ -259,7 +259,10 @@ function displayResults(responseJson) {
   }
   
   $('.info').show(400);
-    
+  
+    if(`${responseJson.ratios[0].liquidityMeasurementRatios.currentRatio}` < 2 ){
+      console.log('hello world')
+    }
      
   }
 
