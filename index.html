@@ -4,11 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link
-    rel="stylesheet"
-    href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/cosmo/bootstrap.min.css"
-  />
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.js'></script>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+     <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.js'></script>
+ 
 </head>
     <title>Financial Ratio Grabber</title>
 
@@ -18,6 +16,9 @@
         <h1>Financial ratio grabber</h1>
     </header>
 
+
+    <a href='http://eoddata.com/symbols.aspx'>Click here for a link to all company symbols</a>
+
     <form>
         <input  id="searchTicker" type="text" placeholder="enter company symbol" required>
         
@@ -26,11 +27,15 @@
 
 <p class="js-error-message"></p>
 
-<section class="showRatios">
-    
-     
-</section>
 
+
+
+
+<section>
+    <div class = 'info'>
+        <p data-toggle="tooltip" title="The current ratio is the company's assets divided by their liabilities. Too low of a number means the company can't pay it's loans, and too high could mean that a company isn't investing its assets properly!" id='currentRatio'>Current Ratio &#9432;</p>
+    </div>
+</section>
 
 
 
@@ -42,15 +47,84 @@
 </section>
 
 <section>
+    <div class = 'info'>
+        <p  data-toggle="tooltip" title="The quick ratio is similar to the current ratio, but it subtracts inventory, leaving a ratio of cash divided by liabilities. This shows how if a company can cover its debts using just cash or liquid items. "id='QuickRatio'>Quick Ratio &#9432;</p>
+    </div>
+</section>
+
+
+
+
+
+<section>
     <div class = 'container'>
         <canvas id='myChart2'></canvas>
 
     </div>
 </section>
 
+
+<section>
+    <div class = 'info'>
+        <p  data-toggle="tooltip" title=''id='PriceEarningRatio'>Price Earning Ratio &#9432;</p>
+    </div>
+</section>
+
+
 <section>
     <div class = 'container'>
         <canvas id='myChart3'></canvas>
+
+    </div>
+</section>
+
+
+
+<section>
+    <div class = 'info'>
+        <p id='Debt-Equity Ratio'>Debt-Equity Ratio &#9432;</p>
+    </div>
+</section>
+
+
+
+<section>
+    <div class = 'container'>
+        <canvas id='myChart4'></canvas>
+
+    </div>
+</section>
+
+
+
+<section>
+    <div class = 'info'>
+        <p id='currentRatio'>Return on Equity Ratio &#9432;</p>
+    </div>
+</section>
+
+
+
+
+<section>
+    <div class = 'container'>
+        <canvas id='myChart5'></canvas>
+
+    </div>
+</section>
+
+
+<section>
+    <div class = 'info'>
+        <p id='currentRatio'>Return on Assets Ratio &#9432;</p>
+    </div>
+</section>
+
+
+
+<section>
+    <div class = 'container'>
+        <canvas id='myChart6'></canvas>
 
     </div>
 </section>
