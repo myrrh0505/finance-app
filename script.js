@@ -1,25 +1,33 @@
 "use strict"
 
+//global variables for ratio charts
+let ratioChart1, ratioChart2, ratioChart3, ratioChart4, ratioChart5, ratioChart6;
+let totalGrade1 , totalGrade2, totalGrade3, totalGrade4, totalGrade5, totalGrade6;
+let finalGrade
 
 //renders the information on the DOM
 
 function displayResults(responseJson) {
  
+
   console.log(responseJson);
+
+  //first part of conditional to catch an error message
   if (responseJson.ratios === undefined){
       console.log('stock not found')
       $('.js-error-message').html(`<p>Stock not found, please choose a valid Stock Symbol.</p>`)
   } else {
 
+    //variables with empty arrays
     let date = [];
     let currentRatio = [];
     let quickRatio = [];
     let inventoryTurnover = [];
     let debtEquityRatio = [];
     let returnOnEquity = [];
-    let returnOnAssets = [];
+    let netProfitMargin = [];
 
-
+    //for loop to push data into empty arrays
     for (let i = 0; i < responseJson.ratios.length && i < 10; i++) {
       
       date.push(`${responseJson.ratios[i].date}`);
@@ -28,32 +36,29 @@ function displayResults(responseJson) {
       inventoryTurnover.push(`${responseJson.ratios[i].operatingPerformanceRatios.inventoryTurnover}`);
       debtEquityRatio.push(`${responseJson.ratios[i].debtRatios.debtEquityRatio}`);
       returnOnEquity.push(`${responseJson.ratios[i].debtRatios.debtEquityRatio}`);
-      returnOnAssets.push(`${responseJson.ratios[i].profitabilityIndicatorRatios.returnOnAssets}`);
-
-
-      //$('.showRatios').append(`
-     // <p>Company name: ${responseJson.symbol}</p>
-     // <p>Current Ratio: ${responseJson.ratios[i].liquidityMeasurementRatios.currentRatio}</p>
-     // <p>Date: ${responseJson.ratios[i].date}</p>
-     // `)
-
-      
-     
-     
-
-        
-
-        
+      netProfitMargin.push(`${responseJson.ratios[i].profitabilityIndicatorRatios.netProfitMargin}`);
   }
 
-   //Current Ratio Chart
+   //conditional to clear 
+
+   if( ratioChart1 != undefined){
+    ratioChart1.destroy();
+    ratioChart2.destroy();
+    ratioChart3.destroy();
+    ratioChart4.destroy();
+    ratioChart5.destroy();
+    ratioChart6.destroy();
+  }
+
+  //Current Ratio Chart
+
   let myChart = document.getElementById('myChart').getContext('2d');
   
       
 
 
-        let ratioChart1 = new Chart(myChart,{
-            type:'bar',
+         ratioChart1 = new Chart(myChart,{
+            type:'line',
             data:{
                 labels:date,
                 datasets:[{
@@ -68,8 +73,8 @@ function displayResults(responseJson) {
         //Quick Ratio Chart
         let myChart2 = document.getElementById('myChart2').getContext('2d');
 
-        let ratioChart2 = new Chart(myChart2,{
-            type:'bar',
+         ratioChart2 = new Chart(myChart2,{
+            type:'line',
             data:{
                 labels:date,
                 datasets:[{
@@ -84,8 +89,8 @@ function displayResults(responseJson) {
         //Invetory Turnover Ratio Chart
         let myChart3 = document.getElementById('myChart3').getContext('2d');
 
-        let ratioChart3 = new Chart(myChart3,{
-            type:'bar',
+         ratioChart3 = new Chart(myChart3,{
+            type:'line',
             data:{
                 labels:date,
                 datasets:[{
@@ -101,8 +106,8 @@ function displayResults(responseJson) {
         //Debt-Equity Ratio Chart
         let myChart4 = document.getElementById('myChart4').getContext('2d');
 
-        let ratioChart4 = new Chart(myChart4,{
-            type:'bar',
+         ratioChart4 = new Chart(myChart4,{
+            type:'line',
             data:{
                 labels:date,
                 datasets:[{
@@ -118,12 +123,12 @@ function displayResults(responseJson) {
         //Return on Equity Chart
         let myChart5 = document.getElementById('myChart5').getContext('2d');
 
-        let ratioChart5 = new Chart(myChart5,{
-            type:'bar',
+         ratioChart5 = new Chart(myChart5,{
+            type:'line',
             data:{
                 labels:date,
                 datasets:[{
-                    label: 'return on equity',
+                    label: 'Return on Equity',
                     data:returnOnEquity,
                     backgroundColor:'fuschia'
                 }]
@@ -138,13 +143,13 @@ function displayResults(responseJson) {
         //Return on Assets Chart
         let myChart6 = document.getElementById('myChart6').getContext('2d');
 
-        let ratioChart6 = new Chart(myChart6,{
-            type:'bar',
+         ratioChart6 = new Chart(myChart6,{
+            type:'line',
             data:{
                 labels:date,
                 datasets:[{
-                    label: 'Return on Assets',
-                    data:returnOnAssets,
+                    label: 'Net Profit Margin',
+                    data:netProfitMargin,
                     backgroundColor:'purple'
                 }]
             },
@@ -155,74 +160,146 @@ function displayResults(responseJson) {
   $('.info').show(400);
   
   //Calculates grade for Current Ratio in latest year
-    if(`${responseJson.ratios[0].liquidityMeasurementRatios.currentRatio}` > 1.4 && `${responseJson.ratios[0].liquidityMeasurementRatios.currentRatio}` < 1.6 ){
-      console.log('A')
+    if(`${responseJson.ratios[0].liquidityMeasurementRatios.currentRatio}` > 1 && `${responseJson.ratios[0].liquidityMeasurementRatios.currentRatio}` < 1.3 ){
+      $('#Grade1').append(`<p>A</p>`);
+      totalGrade1 = 5;
     } else if(`${responseJson.ratios[0].liquidityMeasurementRatios.currentRatio}` > 1.7 && `${responseJson.ratios[0].liquidityMeasurementRatios.currentRatio}` < 3 ) {
-      console.log('B')
-    } else if(`${responseJson.ratios[0].liquidityMeasurementRatios.currentRatio}` > 1 && `${responseJson.ratios[0].liquidityMeasurementRatios.currentRatio}` < 1.3 ){
-      console.log('C')
+      $('#Grade1').append(`<p>B</p>`);
+      totalGrade1 = 4;
+    } else if(`${responseJson.ratios[0].liquidityMeasurementRatios.currentRatio}` > 1.4 && `${responseJson.ratios[0].liquidityMeasurementRatios.currentRatio}` < 1.6 ){
+      $('#Grade1').append(`<p>C</p>`);
+      totalGrade1 = 3;
     } else if(`${responseJson.ratios[0].liquidityMeasurementRatios.currentRatio}` > 3) {
-      console.log('D')
+      $('#Grade1').append(`<p>D</p>`);
+      totalGrade1 = 2;
     } else if (`${responseJson.ratios[0].liquidityMeasurementRatios.currentRatio}` < 1 ){
-      console.log('F')
+      $('#Grade1').append(`<p>F</p>`);
+      totalGrade1 = 1;
     }
 
     //Calculates grade for Quick ratio in latest year
      if(`${responseJson.ratios[0].liquidityMeasurementRatios.quickRatio}` >= 1){
-      console.log('A')
-    } else if (`${responseJson.ratios[0].liquidityMeasurementRatios.quickRatio}` < 1) {
-      console.log('F')
+      $('#Grade2').append(`<p>A</p>`)
+      totalGrade2 = 5;
+    } else if (`${responseJson.ratios[0].liquidityMeasurementRatios.quickRatio}` > .7  && `${responseJson.ratios[0].liquidityMeasurementRatios.quickRatio}` < 1) {
+      $('#Grade2').append(`<p>B</p>`)
+      totalGrade2 = 4;
+    } else if(`${responseJson.ratios[0].liquidityMeasurementRatios.quickRatio}` > .5 && `${responseJson.ratios[0].liquidityMeasurementRatios.quickRatio}` < .6) {
+      $('#Grade2').append(`<p>C</p>`)
+      totalGrade2 = 3;
+    } else if (`${responseJson.ratios[0].liquidityMeasurementRatios.quickRatio}` > .3 && `${responseJson.ratios[0].liquidityMeasurementRatios.quickRatio}` < .4) {
+      $('#Grade2').append(`<p>D</p>`)
+      totalGrade2 = 2;
+    } else if (`${responseJson.ratios[0].liquidityMeasurementRatios.quickRatio}` < .2) {
+      $('#Grade2').append(`<p>F</p>`)
+      totalGrade2 = 1;
     }
 
    //Calculates grade for Inventory Turnover ratio
    
-   if(`${responseJson.ratios[0].operatingPerformanceRatios.inventoryTurnover}` > 4 && `${responseJson.ratios[0].operatingPerformanceRatios.inventoryTurnover}` < 6) {
-    console.log('A')
-   } else if (`${responseJson.ratios[0].operatingPerformanceRatios.inventoryTurnover}` > 6 && `${responseJson.ratios[0].operatingPerformanceRatios.inventoryTurnover}` < 500) {
-     console.log('B')
+   if(`${responseJson.ratios[0].operatingPerformanceRatios.inventoryTurnover}` > 6 && `${responseJson.ratios[0].operatingPerformanceRatios.inventoryTurnover}` < 500) {
+    $('#Grade3').append(`<p>A</p>`)
+    totalGrade3 = 5;
+   } else if (`${responseJson.ratios[0].operatingPerformanceRatios.inventoryTurnover}` > 4 && `${responseJson.ratios[0].operatingPerformanceRatios.inventoryTurnover}` < 6) {
+    $('#Grade3').append(`<p>B</p>`)
+    totalGrade3 = 4;
    } else if (`${responseJson.ratios[0].operatingPerformanceRatios.inventoryTurnover}` > 2 && `${responseJson.ratios[0].operatingPerformanceRatios.inventoryTurnover}`< 3 ) {
-     console.log('C')
+    $('#Grade3').append(`<p>C</p>`)
+    totalGrade3 = 3;
    } else if (`${responseJson.ratios[0].operatingPerformanceRatios.inventoryTurnover}` > 1 && `${responseJson.ratios[0].operatingPerformanceRatios.inventoryTurnover}`< 1.9) {
-     console.log('D')
+    $('#Grade3').append(`<p>D</p>`)
+    totalGrade3 = 2;
    } else if(`${responseJson.ratios[0].operatingPerformanceRatios.inventoryTurnover}` < 1 || `${responseJson.ratios[0].operatingPerformanceRatios.inventoryTurnover}` > 500) {
-     console.log('F')
+    $('#Grade3').append(`<p>A</p>`)
+    totalGrade3 = 1;
    }
 
 
    //Calculates grade for debt equity ratio
 
    if(`${responseJson.ratios[0].debtRatios.debtEquityRatio}` > 1.5 && `${responseJson.ratios[0].debtRatios.debtEquityRatio}` < 2){
-    console.log('A')
+    $('#Grade4').append(`<p>A</p>`)
+    totalGrade4 = 5;
    } else if(`${responseJson.ratios[0].debtRatios.debtEquityRatio}` > 1 && `${responseJson.ratios[0].debtRatios.debtEquityRatio}` < 1.4) {
-     console.log('B')
+    $('#Grade4').append(`<p>B</p>`)
+    totalGrade4 = 4;
    } else if(`${responseJson.ratios[0].debtRatios.debtEquityRatio}` > 2 && `${responseJson.ratios[0].debtRatios.debtEquityRatio}` < 4) {
-     console.log('C')
+    $('#Grade4').append(`<p>C</p>`)
+    totalGrade4 = 3;
    } else if(`${responseJson.ratios[0].debtRatios.debtEquityRatio}` > 4 && `${responseJson.ratios[0].debtRatios.debtEquityRatio}` < 7) {
-     console.log('D')
+    $('#Grade4').append(`<p>D</p>`)
+    totalGrade4 = 2;
    } else if(`${responseJson.ratios[0].debtRatios.debtEquityRatio}` < 1 || `${responseJson.ratios[0].debtRatios.debtEquityRatio}` > 7) {
-     console.log('F')
+    $('#Grade4').append(`<p>F</p>`)
+    totalGrade4 = 1;
    }
 
    //Calculates grade for return on equity ratio
    if(`${responseJson.ratios[0].profitabilityIndicatorRatios.returnOnEquity}` > .15){
-    console.log('A')
+    $('#Grade5').append(`<p>A</p>`)
+    totalGrade5 = 5;
    } else if(`${responseJson.ratios[0].profitabilityIndicatorRatios.returnOnEquity}` > .10 && `${responseJson.ratios[0].profitabilityIndicatorRatios.returnOnEquity}` < .14) {
-     console.log('B')
+    $('#Grade5').append(`<p>B</p>`)
+    totalGrade5 = 4;
    } else if (`${responseJson.ratios[0].profitabilityIndicatorRatios.returnOnEquity}` > .05 && `${responseJson.ratios[0].profitabilityIndicatorRatios.returnOnEquity}` < .10) {
-     console.log('C');
+    $('#Grade5').append(`<p>C</p>`)
+    totalGrade5 = 3;
    } else if(`${responseJson.ratios[0].profitabilityIndicatorRatios.returnOnEquity}` > .01 && `${responseJson.ratios[0].profitabilityIndicatorRatios.returnOnEquity}` < .05) {
-     console.log('D')
+    $('#Grade5').append(`<p>D</p>`)
+    totalGrade5 = 2;
    } else if(`${responseJson.ratios[0].profitabilityIndicatorRatios.returnOnEquity}`< .01) {
-     console.log('F')
+    $('#Grade5').append(`<p>F</p>`)
+    totalGrade5 = 1;
    }
 
-   //Calculates grade for return on asset ratio
+   //Calculates grade for Net profit marginoi
+  
 
-   // if(`${responseJson.ratios[0].profitabilityIndicatorRatios.returnOnAssets}`)
+    if(`${responseJson.ratios[0].profitabilityIndicatorRatios.netProfitMargin}` > .13 ) {
+      $('#Grade6').append(`<p>A</p>`)
+      totalGrade6 = 5;
+    } else if(`${responseJson.ratios[0].profitabilityIndicatorRatios.netProfitMargin}` > .1  && `${responseJson.ratios[0].profitabilityIndicatorRatios.netProfitMargin}` < .13) {
+      $('#Grade6').append(`<p>B</p>`)
+      totalGrade6 = 4;
+    } else if (`${responseJson.ratios[0].profitabilityIndicatorRatios.netProfitMargin}` > .06 && `${responseJson.ratios[0].profitabilityIndicatorRatios.netProfitMargin}` < .1) {
+      $('#Grade6').append(`<p>C</p>`)
+      totalGrade6 = 3;
+    } else if (`${responseJson.ratios[0].profitabilityIndicatorRatios.netProfitMargin}` > .02 && `${responseJson.ratios[0].profitabilityIndicatorRatios.netProfitMargin}` < .06) {
+      $('#Grade6').append(`<p>D</p>`)
+      totalGrade6 = 2;
+    } else if (`${responseJson.ratios[0].profitabilityIndicatorRatios.netProfitMargin}` < .02) {
+      $('#Grade6').append(`<p>F</p>`)
+      totalGrade6 = 1;
+    }
+
+
+    //Adds total Grades
+    
+    finalGrade = totalGrade1 + totalGrade2 + totalGrade3 + totalGrade4 + totalGrade5 + totalGrade6
+
+
+
+
+
+    //Renders Final Grade
+    if(finalGrade >= 27) {
+      $('.finalGrade').append(`<p>Final Grade is : A</p>`)
+    } else if (finalGrade >= 24 && finalGrade <= 26) {
+      $('.finalGrade').append(`<p>Final Grade is : B</p>`)
+    } else if(finalGrade >= 21 && finalGrade <=23) {
+      $('.finalGrade').append(`<p>Final Grade is : C</p>`)
+    } else if(finalGrade >= 18 && finalGrade <=20) {
+      $('.finalGrade').append(`<p>Final Grade is : D</p>`)
+    } else if (finalGrade < 18 ) {
+      $('.finalGrade').append(`<p>Final Grade is : F</p>`)
+    }
+    
+    
 
   }
 
  
+
   console.log('run displayResults')
 }
 
@@ -246,6 +323,9 @@ function watchForm() {
     const symbol = $('#searchTicker').val();
     $('.showRatios').empty();
     $('.js-error-message').empty();
+    $('.Grade').empty();
+    $('.finalGrade').empty();
+    
     
     
     console.log(symbol);

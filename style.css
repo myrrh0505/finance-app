@@ -1,3 +1,8 @@
+main{
+    padding: 70px;
+
+}
+
 .container {
     height: 50%;
     width: 50%;
@@ -7,3 +12,51 @@
 .info{
     display:none;
 }
+
+
+#Name {
+    text-align: center;
+    margin: 1px;
+}
+
+#stocklink{
+    position: relative;
+    text-align: center;
+    margin:1px;
+
+}
+
+
+#inputForm {
+    text-align: center;
+    margin:1px;
+}
+
+
+
+
+
+.gradeSection {
+    float: right;
+    position: relative;
+    top: -150px;
+    right: 150px;
+}
+
+.finalGrade {
+    position: relative;
+    text-align: center;
+    margin:1px;
+}
+/* Mobile Size */
+
+@media only screen and (min-width: 320px) and (max-width: 479px) {
+    
+    }
+
+
+/* Tablet size */
+
+@media only screen and (min-width: 768px) and (max-width: 979px) {
+       
+        }
