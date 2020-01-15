@@ -64,7 +64,7 @@ function displayResults(responseJson) {
                 datasets:[{
                     label: 'Current Ratios',
                     data:currentRatio,
-                    backgroundColor:'green'
+                    backgroundColor:'yellow'
                 }]
             },
             options:{}
@@ -150,7 +150,7 @@ function displayResults(responseJson) {
                 datasets:[{
                     label: 'Net Profit Margin',
                     data:netProfitMargin,
-                    backgroundColor:'purple'
+                    backgroundColor:'blue'
                 }]
             },
             options:{}
@@ -161,37 +161,37 @@ function displayResults(responseJson) {
   
   //Calculates grade for Current Ratio in latest year
     if(`${responseJson.ratios[0].liquidityMeasurementRatios.currentRatio}` > 1 && `${responseJson.ratios[0].liquidityMeasurementRatios.currentRatio}` < 1.3 ){
-      $('#Grade1').append(`<p>A</p>`);
+      $('#Grade1').append(`<h4>Current Ratio Grade: </h4><p>A</p>`);
       totalGrade1 = 5;
     } else if(`${responseJson.ratios[0].liquidityMeasurementRatios.currentRatio}` > 1.7 && `${responseJson.ratios[0].liquidityMeasurementRatios.currentRatio}` < 3 ) {
-      $('#Grade1').append(`<p>B</p>`);
+      $('#Grade1').append(`<h4>Current Ratio Grade: </h4><p>B</p>`);
       totalGrade1 = 4;
     } else if(`${responseJson.ratios[0].liquidityMeasurementRatios.currentRatio}` > 1.4 && `${responseJson.ratios[0].liquidityMeasurementRatios.currentRatio}` < 1.6 ){
-      $('#Grade1').append(`<p>C</p>`);
+      $('#Grade1').append(`<h4>Current Ratio Grade: </h4><p>C</p>`);
       totalGrade1 = 3;
     } else if(`${responseJson.ratios[0].liquidityMeasurementRatios.currentRatio}` > 3) {
-      $('#Grade1').append(`<p>D</p>`);
+      $('#Grade1').append(`<h4>Current Ratio Grade: </h4><p>D</p>`);
       totalGrade1 = 2;
     } else if (`${responseJson.ratios[0].liquidityMeasurementRatios.currentRatio}` < 1 ){
-      $('#Grade1').append(`<p>F</p>`);
+      $('#Grade1').append(`<h4>Current Ratio Grade: </h4><p>F</p>`);
       totalGrade1 = 1;
     }
 
     //Calculates grade for Quick ratio in latest year
      if(`${responseJson.ratios[0].liquidityMeasurementRatios.quickRatio}` >= 1){
-      $('#Grade2').append(`<p>A</p>`)
+      $('#Grade2').append(`<h4>Quick Ratio Grade: </h4><p>A</p>`)
       totalGrade2 = 5;
     } else if (`${responseJson.ratios[0].liquidityMeasurementRatios.quickRatio}` > .7  && `${responseJson.ratios[0].liquidityMeasurementRatios.quickRatio}` < 1) {
-      $('#Grade2').append(`<p>B</p>`)
+      $('#Grade2').append(`<h4>Quick Ratio Grade: </h4><p>B</p>`)
       totalGrade2 = 4;
     } else if(`${responseJson.ratios[0].liquidityMeasurementRatios.quickRatio}` > .5 && `${responseJson.ratios[0].liquidityMeasurementRatios.quickRatio}` < .6) {
-      $('#Grade2').append(`<p>C</p>`)
+      $('#Grade2').append(`<h4>Quick Ratio Grade: </h4><p>C</p>`)
       totalGrade2 = 3;
     } else if (`${responseJson.ratios[0].liquidityMeasurementRatios.quickRatio}` > .3 && `${responseJson.ratios[0].liquidityMeasurementRatios.quickRatio}` < .4) {
-      $('#Grade2').append(`<p>D</p>`)
+      $('#Grade2').append(`<h4>Quick Ratio Grade: </h4><p>D</p>`)
       totalGrade2 = 2;
     } else if (`${responseJson.ratios[0].liquidityMeasurementRatios.quickRatio}` < .2) {
-      $('#Grade2').append(`<p>F</p>`)
+      $('#Grade2').append(`<h4>Quick Ratio Grade: </h4><p>F</p>`)
       totalGrade2 = 1;
     }
 
@@ -325,7 +325,7 @@ function watchForm() {
     $('.js-error-message').empty();
     $('.Grade').empty();
     $('.finalGrade').empty();
-    
+    $('#searchTicker').val('');
     
     
     console.log(symbol);

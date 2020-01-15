@@ -1,6 +1,6 @@
 main{
     padding: 70px;
-
+    background-color: lightgreen;
 }
 
 .container {
@@ -17,14 +17,95 @@ main{
 #Name {
     text-align: center;
     margin: 1px;
+    
+}
+
+/*
+#Name1{
+    font-family: "Coda Caption"; font-size: 49px; font-style: normal; font-variant: normal; font-weight: bold; line-height: 26px; } h3 { font-family: "Coda Caption"; font-size: 14px; font-style: normal; font-variant: normal; font-weight: bold; line-height: 15px; } p { font-family: "Coda Caption"; font-size: 14px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 20px; } blockquote { font-family: "Coda Caption"; font-size: 21px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 30px; } pre { font-family: "Coda Caption"; font-size: 13px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 18px;
+    
+    
+}
+*/
+
+h1 {
+    color:white;
+    font-family: 'Anton', sans-serif;
+}
+p {
+    
+    font-family: 'Anton', sans-serif;
+}
+
+#bio{
+    text-align: center;
+    margin: 1px;
+    
 }
 
 #stocklink{
     position: relative;
     text-align: center;
     margin:1px;
+    
 
 }
+
+.link{
+	color: #000000;
+	font-size: 16px;
+	font-weight: 700;
+
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+/*
+* These styles creates the underlining of link
+*/
+
+.link{
+	position: relative;
+	z-index: 1;
+	display: inline-flex;
+	
+	padding-left: 10px;
+	padding-bottom: 5px;
+	padding-right: 10px;
+}
+
+.link::before{
+	content: "";
+	width: 100%;
+	height: 100%;
+	background-image: linear-gradient(to top, #fed330 25%, rgba(0, 0, 0, 0) 40%);
+	
+	position: absolute;
+	left: 0;
+	bottom: 2px;
+	z-index: -1;
+	
+	will-change: width;
+	transform: rotate(-2deg);
+	transform-origin: left bottom
+}
+
+.link:hover::before{
+	width: 0;
+}
+
+/*
+* animation styles
+*/
+
+.link::before{
+	transition: width .1s ease-out;
+}
+
+.link:hover::before{
+	transition-duration: .15s;
+}
+
 
 
 #inputForm {
@@ -33,13 +114,18 @@ main{
 }
 
 
+.submitContainer {
+    position:relative;
+    text-align: center;
+}
+
 
 
 
 .gradeSection {
     float: right;
     position: relative;
-    top: -150px;
+    top: -200px;
     right: 150px;
 }
 
@@ -47,7 +133,71 @@ main{
     position: relative;
     text-align: center;
     margin:1px;
+    color: white;
 }
+
+h4{
+    color:white;
+}
+
+
+.form__label {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.2rem;
+    margin-left: 2rem;
+    margin-top: 0.7rem;
+    display: block;
+    transition: all 0.3s;
+    transform: translateY(0rem);
+  }
+  
+  .form__input {
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    font-size: 1.2rem;
+      margin: 0 auto;
+    padding: 1.5rem 2rem;
+    border-radius: 0.2rem;
+    background-color: rgb(255, 255, 255);
+    border: none;
+    width: 90%;
+    display: block;
+    border-bottom: 0.3rem solid transparent;
+    transition: all 0.3s;
+  }
+  
+  .form__input:placeholder-shown + .form__label {
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transform: translateY(-4rem);
+    transform: translateY(-4rem);
+  }
+  
+
+  .form-submit-button {
+    background: #B9DFFF;
+    color: #fff;
+    border: 1px solid #eee;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px #eee;
+    text-shadow:none;
+    width: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    
+    }
+    .form-submit-button:hover {
+    background: #016ABC;
+    color: #fff;
+    border: 1px solid #eee;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px #eee;
+    text-shadow:none;
+    cursor: pointer; 
+    }
+  
+
+
 /* Mobile Size */
 
 @media only screen and (min-width: 320px) and (max-width: 479px) {
