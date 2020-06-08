@@ -309,7 +309,7 @@ function displayResults(responseJson) {
 
 
 function grabRatios(symbol) {
-  fetch(`https://financialmodelingprep.com/api/v3/financial-ratios/${symbol}`)
+  fetch(`https://financialmodelingprep.com/api/v3/financial-ratios/${symbol}?apikey=a2d8300bf83d37812ca8fedbb435098c`)
   .then(response => response.json())
   .then(responseJson => displayResults(responseJson))
   
