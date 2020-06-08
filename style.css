@@ -7,11 +7,42 @@ main{
     height: 50%;
     width: 50%;
     margin: 1px;
+    
 }
+
+
+
 
 .info{
     display:none;
+    
 }
+
+#currentRatio {
+    cursor:help;
+}
+
+#ReturnOnAssetsRatio{
+    cursor:help;
+}
+
+#QuickRatio{
+    cursor:help;
+}
+
+
+#InventoryTurnover{
+    cursor:help;
+}
+
+#Debt-Equity-Ratio{
+    cursor:help;
+}
+
+#returnOnEquity{
+    cursor:help;
+}
+
 
 
 #Name {
@@ -29,7 +60,7 @@ main{
 */
 
 h1 {
-    color:white;
+    color:#424242;
     font-family: 'Anton', sans-serif;
 }
 p {
@@ -47,12 +78,13 @@ p {
     position: relative;
     text-align: center;
     margin:1px;
+    color:#424242;
     
 
 }
 
 .link{
-	color: #000000;
+	color: #424242;
 	font-size: 16px;
 	font-weight: 700;
 
@@ -123,21 +155,35 @@ p {
 
 
 .gradeSection {
-    float: right;
-    position: relative;
-    top: -200px;
-    right: 150px;
+  
+   display:flex;
+   flex-direction: row;
+   justify-content: space-between;
+   
+    
+    
+    
+}
+
+.Grade {
+    width: 300px;
+    align-self: center;
 }
 
 .finalGrade {
     position: relative;
     text-align: center;
     margin:1px;
-    color: white;
+    color: #424242;
 }
 
 h4{
-    color:white;
+    color:#424242;
+}
+
+#healthy{
+    text-align: center;
+    color:#424242;
 }
 
 
@@ -195,18 +241,29 @@ h4{
     text-shadow:none;
     cursor: pointer; 
     }
-  
+
+    
 
 
 /* Mobile Size */
 
-@media only screen and (min-width: 320px) and (max-width: 479px) {
+@media screen and (max-width: 600px)  {
     
-    }
+   .Grade{
+       display:none;
+   }
+
+   .container{
+       width:90%;
+   }
 
 
 /* Tablet size */
 
 @media only screen and (min-width: 768px) and (max-width: 979px) {
-       
+
+   .gradeSection {
+       vertical-align: auto;
+   }
+    
         }

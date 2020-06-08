@@ -283,15 +283,15 @@ function displayResults(responseJson) {
 
     //Renders Final Grade
     if(finalGrade >= 27) {
-      $('.finalGrade').append(`<p>Final Grade is : A</p>`)
+      $('.finalGrade').append(`<p data-toggle="tooltip" title="The Final Grade is a sum of the 6 financial ratios to give you an overal scope on the health of your stock!" id='currentRatio'>Final Grade is A &#9432;</p>`)
     } else if (finalGrade >= 24 && finalGrade <= 26) {
-      $('.finalGrade').append(`<p>Final Grade is : B</p>`)
+      $('.finalGrade').append(`<p data-toggle="tooltip" title="The Final Grade is a sum of the 6 financial ratios to give you an overal scope on the health of your stock!" id='currentRatio'>Final Grade is B &#9432;</p>`)
     } else if(finalGrade >= 21 && finalGrade <=23) {
-      $('.finalGrade').append(`<p>Final Grade is : C</p>`)
+      $('.finalGrade').append(`<p data-toggle="tooltip" title="The Final Grade is a sum of the 6 financial ratios to give you an overal scope on the health of your stock!" id='currentRatio'>Final Grade is C &#9432;</p>`)
     } else if(finalGrade >= 18 && finalGrade <=20) {
-      $('.finalGrade').append(`<p>Final Grade is : D</p>`)
+      $('.finalGrade').append(`<p data-toggle="tooltip" title="The Final Grade is a sum of the 6 financial ratios to give you an overal scope on the health of your stock!" id='currentRatio'>Final Grade is D &#9432;</p>`)
     } else if (finalGrade < 18 ) {
-      $('.finalGrade').append(`<p>Final Grade is : F</p>`)
+      $('.finalGrade').append(`<p data-toggle="tooltip" title="The Final Grade is a sum of the 6 financial ratios to give you an overal scope on the health of your stock!" id='currentRatio'>Final Grade is F &#9432;</p>`)
     }
     
     
